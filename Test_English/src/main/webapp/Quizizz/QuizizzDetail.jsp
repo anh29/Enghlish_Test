@@ -5,10 +5,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Chi tiết từ vựng</title>
+<title>Chi tiết câu hỏi</title>
 </head>
 <body>
-<h3>Chi tiết từ vựng</h3>
+<h3>Chi tiết câu hỏi</h3>
 <%
     Quizizz quizizz = (Quizizz) request.getAttribute("quizizz");
 %>
