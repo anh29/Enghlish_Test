@@ -3,7 +3,7 @@
 .head {
 	display: flex;
     justify-content: space-between;
-    padding: 0 10vh;
+    padding: 2vh 10vh;
 }
 
 .head h3 {
@@ -13,7 +13,6 @@
 
 .wrapper {
   width: 100%;
-  padding-top: 10vh;
 }
 
 .wrapper i {
@@ -29,6 +28,7 @@
   font-size: 1.25rem;
   transform: translateY(-50%);
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.23);
+  z-index: 1;
 }
 
 .wrapper i:first-child {
@@ -43,7 +43,6 @@
 .wrapper .carousel {
   display: grid;
   grid-auto-flow: column;
-  grid-auto-columns: calc((100% / 3) - 12px);
   gap: 16px;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
@@ -72,6 +71,7 @@
 }
 
 .carousel .card {
+	width: 480px;
     height: 342px;
     list-style: none;
     background: #e4f4ff;
@@ -132,15 +132,4 @@
   justify-content: space-between;
   width: 100%;
   padding: 10px 50px;
-}
-@media screen and (max-width: 900px) {
-  .wrapper .carousel {
-    grid-auto-columns: calc((100% / 2) - 9px);
-  }
-}
-
-@media screen and (max-width: 600px) {
-  .wrapper .carousel {
-    grid-auto-columns: 100%;
-  }
 }

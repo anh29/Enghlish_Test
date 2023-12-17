@@ -1,70 +1,43 @@
-const carousel = document.querySelector(".carousel");
-const arrowBtns = document.querySelectorAll(".wrapper i");
-const firstCardWidth = carousel.querySelector(".card").offsetWidth;
-const carouselChildrens = [...carousel.children];
 
-let isDragging = false,
-  startX,
-  startScrollLeft;
+  document.addEventListener('DOMContentLoaded', function () {
+    const carousel = document.querySelector('.carousel');
+    const wrapper = document.querySelector('.wrapper');
+    const leftButton = document.getElementById('left');
+    const rightButton = document.getElementById('right');
+    const cardWidth = document.querySelector('.carousel .card').offsetWidth;
+    const cardsInView = 3;
 
-// Get the number of cards that can fit in the carousel at once
-let cardPerView = Math.round(carousel.offsetWidth / firstCardWidth);
+    function centerCarousel() {
+      const itemsCount = document.querySelectorAll('.carousel .card').length;
+      const wrapperWidth = wrapper.offsetWidth;
+      const carouselWidth = Math.min(itemsCount * cardWidth, cardsInView * cardWidth);
 
-// Insert copies of the last few cards to beginning of the carousel for infinite scrolling
-carouselChildrens
-  .slice(-cardPerView)
-  .reverse()
-  .forEach((card) => {
-    carousel.insertAdjacentHTML("afterBegin", card.outerHTML);
+      if (carouselWidth < wrapperWidth) {
+        const offset = (wrapperWidth - carouselWidth) / 2;
+        carousel.style.marginLeft = offset + 'px';
+        carousel.style.width = carouselWidth + 'px';
+      } else {
+        carousel.style.marginLeft = '0';
+        carousel.style.width = '100%';
+      }
+    }
+
+    function handleNavigation(direction) {
+      const scrollAmount = cardsInView * cardWidth * direction;
+      carousel.scrollLeft += scrollAmount;
+    }
+
+    leftButton.addEventListener('click', function () {
+      handleNavigation(-1);
+    });
+
+    rightButton.addEventListener('click', function () {
+      handleNavigation(1);
+    });
+
+    window.addEventListener('resize', function () {
+      centerCarousel();
+    });
+
+    centerCarousel();
   });
-
-// Insert copies of the first few cards to end of the carousel for infinite scrolling
-carouselChildrens.slice(0, cardPerView).forEach((card) => {
-  carousel.insertAdjacentHTML("beforeEnd", card.outerHTML);
-});
-
-//Add event listeners for the arrow buttons to scroll the carousel left and right
-arrowBtns.forEach((btn) => {
-  btn.addEventListener("click", () => {
-    carousel.scrollLeft += btn.id === "left" ? -firstCardWidth : firstCardWidth;
-  });
-});
-
-const dragStart = (e) => {
-  isDragging = true;
-  carousel.classList.add("dragging");
-  // Records the initial cursor ans scroll position of the carousel
-  startX = e.pageX;
-  startScrollLeft = carousel.scrollLeft;
-};
-
-const dragging = (e) => {
-  if (!isDragging) return;
-  // Update the scroll position of the carousel based on the cursor movement
-  carousel.scrollLeft = startScrollLeft - (e.pageX - startX);
-};
-
-const dragStop = () => {
-  isDragging = false;
-  carousel.classList.remove("dragging");
-};
-
-const infiniteScroll = () => {
-  if (carousel.scrollLeft === 0) {
-    carousel.classList.add("no-transition");
-    carousel.scrollLeft = 0;
-    carousel.classList.remove("no-transition");
-  } else if (
-    Math.ceil(carousel.scrollLeft) ===
-    carousel.scrollWidth - carousel.offsetWidth
-  ) {
-    carousel.classList.add("no-transition");
-    carousel.scrollLeft = carousel.scrollWidth - carousel.offsetWidth;
-    carousel.classList.remove("no-transition");
-  }
-};
-
-carousel.addEventListener("mousedown", dragStart);
-carousel.addEventListener("mousemove", dragging);
-document.addEventListener("mouseup", dragStop);
-carousel.addEventListener("scroll", infiniteScroll);

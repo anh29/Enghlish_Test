@@ -20,14 +20,17 @@
         Integer user_id = (Integer) ss.getAttribute("user_id");
     %>
     <div id="navigation">
-    	<div class = "center">
-    	<a class="<%= request.getParameter("mod3") != null ? "active" : "" %>" href="CRUD_vocabulary?mod3=1">Danh sách từ vựng</a>
+    	<div class = "center"><a class="<%= request.getParameter("mod3") != null ? "active" : "" %>" href="CRUD_vocabulary?mod3=1">Danh sách từ vựng</a>
         <a class="<%= request.getParameter("mod1") != null ? "active" : "" %>" href="CRUD_vocabulary?mod1=1">Thêm từ vựng</a>
         <a class="<%= request.getParameter("mod4") != null ? "active" : "" %>" href="#">Tìm kiếm từ vựng</a>
         <a class="<%= request.getParameter("mod5") != null ? "active" : "" %>" href="CR_test">Danh sách đề thi</a>
+        
+    	<a class="active" href="CR_recordTest?mod1=1">Lịch sử thi</a>
     	</div>    
     </div>
     
+    
+    <h3 class="txt"><a href="CR_recordTest">Ket qua bai lam</a></h3>
     <main>
         <form action="CRUD_vocabulary?mod3=1" method="post">
             <table>
@@ -67,7 +70,5 @@
 	    </form>
 	  </div>
 	</div>
-    
-    <h3><a href="CR_recordTest">Ket qua bai lam</a></h3>
 </body>
 </html>

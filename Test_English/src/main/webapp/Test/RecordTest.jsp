@@ -8,6 +8,12 @@
 <head>
     <meta charset="UTF-8">
     <title>CodeTest List</title>
+        <link rel="stylesheet" href="./assets/css/reset.css">
+        <link rel="stylesheet" href="./assets/css/nav.css">
+        <link rel="stylesheet" href="./assets/css/recordTest.css">
+        <link rel="stylesheet" href="./assets/css/modal.css">
+        <script src="./assets/js/modal.js" defer></script>
+        <script src="./assets/js/recordTest.js" defer></script>
 </head>
 <body>
     <% 
@@ -15,35 +21,49 @@
         HttpSession ss = request.getSession();
         Integer user_id = (Integer) ss.getAttribute("user_id");
     %>
-    <h3>Lịch sử bài làm</h3>
+    <div id="navigation">
+    	<div class = "center"><a class="<%= request.getParameter("mod3") != null ? "active" : "" %>" href="CRUD_vocabulary?mod3=1">Danh sách từ vựng</a>
+        <a class="<%= request.getParameter("mod1") != null ? "active" : "" %>" href="CRUD_vocabulary?mod1=1">Thêm từ vựng</a>
+        <a class="<%= request.getParameter("mod4") != null ? "active" : "" %>" href="#">Tìm kiếm từ vựng</a>
+        <a class="<%= request.getParameter("mod5") != null ? "active" : "" %>" href="CR_test">Danh sách đề thi</a>
+        
+    	<a class="active" href="CR_recordTest?mod1=1">Lịch sử thi</a>
+    	</div>    
+    </div>
 
-        <table border="1" width="100%">
-            <thead>
-                <tr>
-                    <th>STT</th>
-                    <th>Thời gian</th>
-                    <th>Đề</th>
-                    <th>Chi tiết</th>
-                </tr>
-            </thead>
-            <tbody>
-                <%int index = 1; for (RecordTest recordTest : RecordTestsArray) { %>
-                    <tr>
-                        <td><%= index++ %></td>
-                        <td><%= recordTest.getWordDay() %></td>
-                        <td><%= recordTest.getNameTest() %></td>
-                        <td><a href="CR_recordTest?day=<%= recordTest.getWordDay() %>">...</a></td>
-                        <%-- <td><a href="CRUD_vocabulary?mod2=1&&word_id=<%= vocabulary.getWordId() %>">...</a></td>
-                        <td><input type="checkbox" name="vocabularyId[]" value="<%= vocabulary.getWordId() %>"></td> --%>
-                    </tr>
-                <% } %>
-            </tbody>
-        </table>
-    <a href="javascript:history.back()">Back</a>
-    <%-- Kiểm tra giá trị session và hiển thị phần của trang web nếu cần --%>
-    <% if (user_id != null && user_id == 1) { %>
-        <h3><a href="CR_test?mod1=1">Thêm de thi</a></h3>
+<div class="result-container" id="result-container">
+    <% int index = 1; for (RecordTest recordTest : RecordTestsArray) { %>
+        <div class="result-item">
+            <div class="cont">
+                <h4>STT <%= index++ %></h4>
+                <div class="content">
+                    <p>Thời gian: <%= recordTest.getWordDay() %></p>
+                    <p><strong>Đề: <%= recordTest.getNameTest() %></strong></p>
+                </div>
+            </div>
+            <a href="CR_recordTest?day=<%= recordTest.getWordDay() %>">Xem chi tiết</a>
+        </div>
     <% } %>
-    <h3><a href="CR_recordTest">Ket qua bai lam</a></h3>
+</div>
+
+<div class="pagination">
+    <button onclick="prevPage()">Previous</button>
+    <button onclick="nextPage()">Next</button>
+</div>
+
+
+
+	<!-- Modal -->
+	<div id="searchModal" class="modal">
+	  <div class="modal-content">
+	    <span class="close" onclick="closeModal()">&times;</span>
+	    <form name="form1" action="CRUD_vocabulary?mod4=1" id="searchForm" method="post" onsubmit="submitSearch()">
+	      <label for="searchInput">Nhập từ cần tìm:</label>
+	      <input type="text" id="infor" name="infor" required>
+	      <input type="submit" value="Find">
+	    </form>
+	  </div>
+	</div>
+
 </body>
 </html>

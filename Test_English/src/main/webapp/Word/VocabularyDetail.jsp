@@ -20,6 +20,8 @@
         <a class="<%= request.getParameter("mod1") != null ? "active" : "" %>" href="CRUD_vocabulary?mod1=1">Thêm từ vựng</a>
         <a class="<%= request.getParameter("mod4") != null ? "active" : "" %>" href="#">Tìm kiếm từ vựng</a>
         <a class="<%= request.getParameter("mod5") != null ? "active" : "" %>" href="CR_test">Danh sách đề thi</a>
+        
+    	<a class="active" href="CR_recordTest?mod1=1">Lịch sử thi</a>
     	</div>    
     </div>
     
