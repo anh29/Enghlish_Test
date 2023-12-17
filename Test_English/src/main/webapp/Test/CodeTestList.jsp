@@ -32,13 +32,16 @@
     
     <h3 class="txt"><a href="CR_recordTest">Ket qua bai lam</a></h3>
     <main>
-        <form action="CRUD_vocabulary?mod3=1" method="post">
+        <form action="" method="post">
             <table>
                 <thead>
                     <tr>
                         <th>STT</th>
                         <th>De Thi</th>
-                        <th>Action</th>
+	                    <% if (user_id != null && user_id == 1) { %>
+					        <th>Detail</th>
+					    <% } %>
+                        <th>Test</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -46,16 +49,19 @@
                         <tr>
                             <td><%= index++ %></td>
                             <td><%= codeTest.getName() %></td>
-                            <td><a href="CR_test?ID_test=<%= codeTest.getId() %>">Do test</a></td>
+                         <% if (user_id != null && user_id == 1) { %>
+					        <td><a href="CR_test?mod2=1&&ID_test=<%= codeTest.getId() %>">...</a></td>
+					    <% } %>
+                            <td><a href="CR_test?mod3=1&&ID_test=<%= codeTest.getId() %>">Do test</a></td>
                         </tr>
                     <% } %>
                 </tbody>
             </table>
         </form>
     </main>
-
+	<a href="javascript:history.back() " style="font-size: 26px; color: #0066cc;  margin-left:120px">Back</a>
     <% if (user_id != null && user_id == 1) { %>
-        <h3><a href="CR_test?mod1=1">Thêm de thi</a></h3>
+		<a href="CR_test?mod1=1" style="font-size: 26px; color: #0066cc; margin-left:120px">Thêm đề thi</a>
     <% } %>
     
     

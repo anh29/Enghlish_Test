@@ -101,7 +101,18 @@ public class CR_test extends HttpServlet {
 					e.printStackTrace();
 				}
 			}
-		} else if (request.getParameter("ID_test") != null) {
+		}else if (request.getParameter("ID_test") != null && request.getParameter("mod2") != null) {
+				try {
+					quizizzsArray = CR_TestBO.getQuizizzInTest(request.getParameter("ID_test"));
+					destination = "/Test/QuizizzResultSeeking.jsp";
+					request.setAttribute("test_id", request.getParameter("ID_test"));
+					request.setAttribute("quizizzsArray", quizizzsArray);
+					rd = request.getRequestDispatcher(destination);
+					rd.forward(request, response);
+				} catch (NumberFormatException | ClassNotFoundException | SQLException e) {
+					e.printStackTrace();
+				}
+		}  else if (request.getParameter("ID_test") != null && request.getParameter("mod3") != null) {
 				try {
 					quizizzsArray = CR_TestBO.getQuizizzInTest(request.getParameter("ID_test"));
 					destination = "/Test/FormDoTest.jsp";

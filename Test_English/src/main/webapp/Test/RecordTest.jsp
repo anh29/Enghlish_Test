@@ -31,20 +31,20 @@
     	</div>    
     </div>
 
-<div class="result-container" id="result-container">
-    <% int index = 1; for (RecordTest recordTest : RecordTestsArray) { %>
-        <div class="result-item">
-            <div class="cont">
-                <h4>STT <%= index++ %></h4>
-                <div class="content">
-                    <p>Thời gian: <%= recordTest.getWordDay() %></p>
-                    <p><strong>Đề: <%= recordTest.getNameTest() %></strong></p>
-                </div>
-            </div>
-            <a href="CR_recordTest?day=<%= recordTest.getWordDay() %>">Xem chi tiết</a>
-        </div>
-    <% } %>
-</div>
+	<div class="result-container" id="result-container">
+	    <% int index = 1; for (RecordTest recordTest : RecordTestsArray) { %>
+	        <div class="result-item">
+	            <div class="cont">
+	                <h4>STT <%= index++ %></h4>
+	                <div class="content">
+	                    <p>Thời gian: <%= recordTest.getWordDay() %></p>
+	                    <p><strong>Đề: <%= recordTest.getNameTest() %></strong></p>
+	                </div>
+	            </div>
+	            <a href="CR_recordTest?day=<%= recordTest.getWordDay() %>">Xem chi tiết</a>
+	        </div>
+	    <% } %>
+	</div>
 
 <div class="pagination">
     <button onclick="prevPage()">Previous</button>

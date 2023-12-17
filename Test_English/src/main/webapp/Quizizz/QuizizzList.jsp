@@ -8,6 +8,11 @@
     <meta charset="UTF-8">
     <title>Quizizz List</title>
     <link rel="stylesheet" type="text/css" href="/assets/css/reset.css">
+    <link rel="stylesheet" href="./assets/css/reset.css">
+	<link rel="stylesheet" href="./assets/css/nav.css">
+	<link rel="stylesheet" href="./assets/css/modal.css">
+	
+	<script src="./assets/js/modal.js" defer></script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -147,10 +152,16 @@
         <input type="submit" value="Delete"/>
         <% } %>
     </form>
-<%--      <% if (user_id != null && user_id.equals(1)) { %>
-        <h3>2. <a href="CRUD_quizizz?mod1=1">Thêm câu hỏi</a></h3>
-        <h3>3. <a href="CRUD_quizizz?mod4=1">Tìm kiếm câu hỏi</a></h3>
-        <h3><a href="CR_test">Danh sach de thi</a></h3>
-    <% } %> --%>
+	<!-- Modal -->
+	<div id="searchModal" class="modal">
+	  <div class="modal-content">
+	    <span class="close" onclick="closeModal()">&times;</span>
+	    <form name="form1" action="CRUD_quizizz?mod4=1" id="searchForm" method="post" onsubmit="submitSearch()">
+	      <label for="searchInput">Nhập câu hỏi cần tìm:</label>
+	      <input type="text" id="infor" name="infor" required>
+	      <input type="submit" value="Find">
+	    </form>
+	  </div>
+	</div>
 </body>
 </html>

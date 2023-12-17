@@ -59,7 +59,7 @@
     <% 
         ArrayList<Quizizz> quizizzsArray = (ArrayList<Quizizz>) request.getAttribute("quizizzsArray"); 
     %>
-    <h3>Danh sách câu hỏi tìm được</h3>
+    <h3>Danh sách câu hỏi trong đề</h3>
 
     <% if (!quizizzsArray.isEmpty()) { %>
         <table border=1 width=100%>
