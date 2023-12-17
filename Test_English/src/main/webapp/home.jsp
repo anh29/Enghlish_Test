@@ -46,15 +46,16 @@
     </div>
 
     <div id="content" >
-        <div class="head">
-        	<h3>Danh sách từ vựng</h3>
-	        <input type="submit" value="Delete"/>	
-        </div>
+
         
         <% if (vocabularysArray.size() > 1) {%>
         
-	        <div class="wrapper">
+	    <div class="wrapper">
         <form action="CRUD_vocabulary?mod3=1" method="post">
+            <div class="head">
+	        	<h3>Danh sách từ vựng</h3>
+		        <input type="submit" value="Delete"/>	
+	        </div>
 			    <i id="left" class="fa-solid fa-angle-left"></i>
 			    <ul class="carousel">
 		             <%int index = 1; for (Vocabulary vocabulary : vocabularysArray) { %>

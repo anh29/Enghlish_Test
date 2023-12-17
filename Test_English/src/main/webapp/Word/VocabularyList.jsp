@@ -26,7 +26,6 @@
     %>
     <h3>Danh sách từ vựng</h3>
     <form action="CRUD_vocabulary?mod3=1" method="post">
-
         <table border="1" width="100%">
             <thead>
                 <tr>

@@ -36,7 +36,7 @@ public class CRUD_vocabulary extends HttpServlet {
 
 		CRUD_vocabularyBO CRUD_Vocabulary_BO = new CRUD_vocabularyBO();
 		ArrayList<Vocabulary> vocabularysArray = CRUD_Vocabulary_BO.getVocabularyList(user_id);
-		String destination = "/Word/VocabularyList.jsp";
+		String destination = "/home.jsp";
 		request.setAttribute("vocabularysArray", vocabularysArray);
 		RequestDispatcher rd = request.getRequestDispatcher(destination);
 		rd.forward(request, response);
@@ -109,6 +109,7 @@ public class CRUD_vocabulary extends HttpServlet {
 					}
 			}
 		} else if (request.getParameter("mod3") != null) {
+			
 			if (request.getParameterValues("vocabularyId[]") != null) {
 				String[] vocabularyIds = request.getParameterValues("vocabularyId[]");
 				if (vocabularyIds != null) {
@@ -128,10 +129,13 @@ public class CRUD_vocabulary extends HttpServlet {
 			}
 
 		} else if (request.getParameter("mod4") != null) {
-
+			System.out.println(request.getParameter("mod4"));
 			if (request.getParameter("infor") != null) {
+				
+			System.out.println(request.getParameter("infor"));
 				vocabularysArray = CRUD_Vocabulary_BO.seekingVocabulary(user_id,
 						request.getParameter("infor"));
+						System.out.println(vocabularysArray);
 				destination = "/Word/VocabularyResultSeeking.jsp";
 				request.setAttribute("user_id", user_id);
 				request.setAttribute("vocabularysArray", vocabularysArray);

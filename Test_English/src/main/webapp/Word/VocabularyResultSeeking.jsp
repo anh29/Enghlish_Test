@@ -34,7 +34,7 @@
         	<h3>Danh sách từ vựng</h3>
         </div>
         
-        <% if (vocabularysArray.size() > 1) {%>
+        <% if (vocabularysArray.size() > 0) {%>
         
 	        <div class="wrapper">
         <form action="CRUD_vocabulary?mod3=1" method="post">
@@ -74,7 +74,6 @@
 	    </form>
 	  </div>
 	</div>
-	
     
 </body>
 </html>
