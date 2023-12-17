@@ -62,6 +62,7 @@
     <% if (user_id != null && user_id.equals(1)) { %>
         <h3>2. <a href="CRUD_quizizz?mod1=1">Thêm câu hỏi</a></h3>
         <h3>3. <a href="CRUD_quizizz?mod4=1">Tìm kiếm câu hỏi</a></h3>
+        <h3><a href="CR_test">Danh sach de thi</a></h3>
     <% } %>
 </body>
 </html>
