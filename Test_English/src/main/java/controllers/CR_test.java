@@ -105,7 +105,6 @@ public class CR_test extends HttpServlet {
 				try {
 					quizizzsArray = CR_TestBO.getQuizizzInTest(request.getParameter("ID_test"));
 					destination = "/Test/FormDoTest.jsp";
-					request.setAttribute("test_id", request.getParameter("ID_test"));
 					request.setAttribute("quizizzsArray", quizizzsArray);
 					rd = request.getRequestDispatcher(destination);
 					rd.forward(request, response);
